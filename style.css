@@ -1,0 +1,286 @@
+/*
+ * style.css — Sjåførkalkulator
+ * Mobil-først. Prefiks: sk-  (sjåførkalkulator).
+ * Mørkt tema, store touch-mål, trygt for "notch"/safe-area på iPhone.
+ */
+
+:root {
+  --bg: #0f172a;            /* slate-900 */
+  --bg-kort: #1e293b;       /* slate-800 */
+  --bg-felt: #0b1220;
+  --kant: #334155;          /* slate-700 */
+  --tekst: #e2e8f0;         /* slate-200 */
+  --tekst-svak: #94a3b8;    /* slate-400 */
+  --aksent: #38bdf8;        /* sky-400 */
+  --aksent-mork: #0ea5e9;   /* sky-500 */
+  --gront: #4ade80;         /* green-400 */
+  --radius: 14px;
+  --radius-lite: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--tekst);
+  line-height: 1.4;
+  /* Trygg avstand til iPhone-kanter/notch */
+  padding:
+    env(safe-area-inset-top)
+    env(safe-area-inset-right)
+    env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+.sk-app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+/* ---------- Header ---------- */
+.sk-header { text-align: center; margin-bottom: 22px; }
+.sk-tittel {
+  font-size: 1.6rem;
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+.sk-undertittel {
+  margin: 0;
+  color: var(--tekst-svak);
+  font-size: 0.95rem;
+}
+
+/* ---------- Skjema / felter ---------- */
+.sk-skjema { display: flex; flex-direction: column; gap: 18px; }
+
+.sk-felt { display: flex; flex-direction: column; gap: 6px; }
+.sk-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+
+.sk-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--tekst);
+  padding: 0;
+}
+
+.sk-hjelp {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--tekst-svak);
+}
+
+.sk-input-rad {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-felt);
+  border: 1px solid var(--kant);
+  border-radius: var(--radius-lite);
+  padding: 0 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.sk-input-rad:focus-within {
+  border-color: var(--aksent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+}
+
+.sk-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--tekst);
+  font-size: 1.15rem;      /* ≥16px hindrer auto-zoom på iOS */
+  padding: 14px 0;
+  outline: none;
+}
+.sk-input::placeholder { color: #475569; }
+
+.sk-enhet {
+  color: var(--tekst-svak);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* ---------- Tur/retur-bryter ---------- */
+.sk-bryter { margin-top: 8px; }
+.sk-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--tekst-svak);
+}
+.sk-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.sk-switch-spor {
+  position: relative;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 28px;
+  background: var(--kant);
+  border-radius: 999px;
+  transition: background 0.15s;
+}
+.sk-switch-spor::after {
+  content: "";
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 22px; height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.15s;
+}
+.sk-switch input:checked + .sk-switch-spor { background: var(--aksent-mork); }
+.sk-switch input:checked + .sk-switch-spor::after { transform: translateX(18px); }
+.sk-switch input:focus-visible + .sk-switch-spor { box-shadow: 0 0 0 3px rgba(56,189,248,0.3); }
+.sk-switch input:checked ~ .sk-switch-tekst { color: var(--tekst); }
+
+/* ---------- Slitasje-segment ---------- */
+.sk-segment {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.sk-segment-knapp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 11px 4px;
+  background: var(--bg-felt);
+  border: 1px solid var(--kant);
+  border-radius: var(--radius-lite);
+  color: var(--tekst);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.sk-segment-knapp small {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--tekst-svak);
+}
+.sk-segment-knapp.sk-aktiv {
+  border-color: var(--aksent);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--aksent);
+}
+.sk-segment-knapp.sk-aktiv small { color: var(--aksent); }
+
+.sk-egen-skjult { display: none; }
+.sk-egen-skjult.sk-vis { display: flex; margin-top: 8px; }
+
+/* ---------- Stepper (antall personer) ---------- */
+.sk-stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sk-stepper-knapp {
+  width: 48px; height: 48px;
+  flex: 0 0 auto;
+  border: 1px solid var(--kant);
+  background: var(--bg-felt);
+  color: var(--tekst);
+  border-radius: var(--radius-lite);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s, background 0.15s;
+}
+.sk-stepper-knapp:active { background: var(--kant); }
+.sk-stepper-input {
+  width: 64px;
+  text-align: center;
+  border: 1px solid var(--kant);
+  background: var(--bg-felt);
+  color: var(--tekst);
+  border-radius: var(--radius-lite);
+  font-size: 1.15rem;
+  padding: 13px 0;
+  outline: none;
+}
+.sk-stepper-input:focus { border-color: var(--aksent); }
+.sk-stepper-tekst { color: var(--tekst-svak); font-size: 0.9rem; }
+
+/* ---------- Resultat ---------- */
+.sk-resultat {
+  margin-top: 26px;
+  background: var(--bg-kort);
+  border: 1px solid var(--kant);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  text-align: center;
+}
+.sk-total-etikett {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--tekst-svak);
+}
+.sk-total {
+  margin: 4px 0 16px;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--gront);
+  letter-spacing: -0.02em;
+}
+
+.sk-oppdeling {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+.sk-rad {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 2px;
+  border-top: 1px solid var(--kant);
+}
+.sk-rad dt { color: var(--tekst-svak); margin: 0; }
+.sk-rad dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+.sk-rad-person dt, .sk-rad-person dd { color: var(--aksent); }
+
+.sk-meta {
+  margin: 16px 0 0;
+  font-size: 0.85rem;
+  color: var(--tekst-svak);
+}
+
+/* ---------- Footer ---------- */
+.sk-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+.sk-footer p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* ---------- Lys modus (følger systemet) ---------- */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f1f5f9;
+    --bg-kort: #ffffff;
+    --bg-felt: #ffffff;
+    --kant: #cbd5e1;
+    --tekst: #0f172a;
+    --tekst-svak: #64748b;
+    --gront: #16a34a;
+  }
+  .sk-input::placeholder { color: #94a3b8; }
+  .sk-footer p { color: #94a3b8; }
+}

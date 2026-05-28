@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Claude Code (lokale tillatelser — ikke delt)
+.claude/settings.local.json
+
+# Node (kun for testkjøring; ingen avhengigheter sjekkes inn)
+node_modules/

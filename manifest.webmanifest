@@ -1,0 +1,20 @@
+{
+  "name": "Sjåførkalkulator",
+  "short_name": "Sjåfør",
+  "description": "Beregn hva kjøreturen koster: drivstoff pluss slitasje, fordelt på antall passasjerer.",
+  "lang": "nb",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

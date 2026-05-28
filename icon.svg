@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sjåførkalkulator">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Bakgrunn (avrundet, med trygg sone for maskable-ikon) -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- Gauge-bue: antyder turteller / dashboard -->
+  <path d="M 140 320 A 130 130 0 1 1 372 320"
+        fill="none" stroke="#334155" stroke-width="26" stroke-linecap="round"/>
+  <path d="M 140 320 A 130 130 0 0 1 256 138"
+        fill="none" stroke="#38bdf8" stroke-width="26" stroke-linecap="round"/>
+
+  <!-- "kr" sentrert -->
+  <text x="256" y="300" text-anchor="middle"
+        font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="150" font-weight="700" fill="#e2e8f0">kr</text>
+
+  <!-- Liten "drop"/markør under for drivstoff-hint -->
+  <circle cx="256" cy="360" r="14" fill="#4ade80"/>
+</svg>

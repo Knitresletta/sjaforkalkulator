@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Beregn hva kjøreturen koster: drivstoff pluss slitasje, fordelt på antall passasjerer.">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- PWA / Legg til på Hjem-skjerm -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Sjåfør">
+
+  <title>Sjåførkalkulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="sk-app">
+    <header class="sk-header">
+      <h1 class="sk-tittel">Sjåførkalkulator</h1>
+      <p class="sk-undertittel">Hva koster turen — drivstoff og slitasje</p>
+    </header>
+
+    <form class="sk-skjema" id="skjema" autocomplete="off" novalidate>
+      <!-- Literpris -->
+      <div class="sk-felt">
+        <label class="sk-label" for="literpris">Literpris</label>
+        <div class="sk-input-rad">
+          <input class="sk-input" id="literpris" name="literpris"
+                 type="text" inputmode="decimal" placeholder="21,90">
+          <span class="sk-enhet">kr/l</span>
+        </div>
+        <p class="sk-hjelp">Prisen sist du fylte.</p>
+      </div>
+
+      <!-- Forbruk -->
+      <div class="sk-felt">
+        <label class="sk-label" for="forbruk">Forbruk</label>
+        <div class="sk-input-rad">
+          <input class="sk-input" id="forbruk" name="forbruk"
+                 type="text" inputmode="decimal" placeholder="0,6">
+          <span class="sk-enhet">l/100 km</span>
+        </div>
+        <p class="sk-hjelp">Snittforbruk i det siste (se bilens display).</p>
+      </div>
+
+      <!-- Avstand -->
+      <div class="sk-felt">
+        <label class="sk-label" for="avstand">Avstand</label>
+        <div class="sk-input-rad">
+          <input class="sk-input" id="avstand" name="avstand"
+                 type="text" inputmode="decimal" placeholder="50">
+          <span class="sk-enhet">km</span>
+        </div>
+        <div class="sk-bryter">
+          <label class="sk-switch">
+            <input type="checkbox" id="turRetur" name="turRetur">
+            <span class="sk-switch-spor" aria-hidden="true"></span>
+            <span class="sk-switch-tekst">Tur/retur (dobler avstanden)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Slitasje -->
+      <fieldset class="sk-felt sk-fieldset">
+        <legend class="sk-label">Slitasje</legend>
+        <div class="sk-segment" id="slitasjeValg" role="group" aria-label="Slitasjenivå">
+          <button type="button" class="sk-segment-knapp" data-verdi="1.0">Lav<small>10 kr/mil</small></button>
+          <button type="button" class="sk-segment-knapp sk-aktiv" data-verdi="1.5">Middels<small>15 kr/mil</small></button>
+          <button type="button" class="sk-segment-knapp" data-verdi="2.0">Høy<small>20 kr/mil</small></button>
+          <button type="button" class="sk-segment-knapp" data-verdi="egen">Egen<small>kr/km</small></button>
+        </div>
+        <div class="sk-input-rad sk-egen-skjult" id="egenRad">
+          <input class="sk-input" id="slitasjeEgen" name="slitasjeEgen"
+                 type="text" inputmode="decimal" placeholder="1,5">
+          <span class="sk-enhet">kr/km</span>
+        </div>
+        <p class="sk-hjelp">Dekk, service og vedlikehold — uten drivstoff. Statens sats (3,50 kr/km) dekker også drivstoff, så den passer ikke her.</p>
+      </fieldset>
+
+      <!-- Antall personer -->
+      <div class="sk-felt">
+        <label class="sk-label" for="antallPersoner">Deler på</label>
+        <div class="sk-stepper">
+          <button type="button" class="sk-stepper-knapp" id="personerMinus" aria-label="Færre personer">−</button>
+          <input class="sk-stepper-input" id="antallPersoner" name="antallPersoner"
+                 type="text" inputmode="numeric" value="1" aria-label="Antall personer">
+          <button type="button" class="sk-stepper-knapp" id="personerPluss" aria-label="Flere personer">+</button>
+          <span class="sk-stepper-tekst">personer</span>
+        </div>
+      </div>
+    </form>
+
+    <!-- Resultat -->
+    <section class="sk-resultat" id="resultat" aria-live="polite">
+      <p class="sk-total-etikett">Totalt</p>
+      <p class="sk-total" id="totalKr">0,00 kr</p>
+
+      <dl class="sk-oppdeling">
+        <div class="sk-rad">
+          <dt>Drivstoff</dt>
+          <dd id="drivstoffKr">0,00 kr</dd>
+        </div>
+        <div class="sk-rad">
+          <dt>Slitasje</dt>
+          <dd id="slitasjeKr">0,00 kr</dd>
+        </div>
+        <div class="sk-rad sk-rad-person" id="perPersonRad" hidden>
+          <dt>Per person</dt>
+          <dd id="perPersonKr">0,00 kr</dd>
+        </div>
+      </dl>
+
+      <p class="sk-meta" id="meta">Fyll inn feltene over for å se kostnaden.</p>
+    </section>
+
+    <footer class="sk-footer">
+      <p>Slitasjetall basert på NAF/bransjeestimater (dekk, service, vedlikehold ≈ 1–2 kr/km).</p>
+    </footer>
+  </main>
+
+  <script src="calc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
