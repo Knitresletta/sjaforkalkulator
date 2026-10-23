@@ -144,8 +144,8 @@ body {
 /* ---------- Slitasje-segment ---------- */
 .sk-segment {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
 }
 .sk-segment-knapp {
   display: flex;
@@ -249,6 +249,8 @@ body {
   padding: 10px 2px;
   border-top: 1px solid var(--kant);
 }
+/* hidden-attributtet må vinne over display: flex over. */
+.sk-rad[hidden] { display: none; }
 .sk-rad dt { color: var(--tekst-svak); margin: 0; }
 .sk-rad dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
 .sk-rad-person dt, .sk-rad-person dd { color: var(--aksent); }

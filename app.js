@@ -34,6 +34,7 @@
     // resultat
     totalKr: document.getElementById('totalKr'),
     drivstoffKr: document.getElementById('drivstoffKr'),
+    slitasjeRad: document.getElementById('slitasjeRad'),
     slitasjeKr: document.getElementById('slitasjeKr'),
     perPersonRad: document.getElementById('perPersonRad'),
     perPersonKr: document.getElementById('perPersonKr'),
@@ -41,7 +42,8 @@
   };
 
   // ---- Slitasje: hvilket nivå er valgt -----------------------------------
-  // Default "middels" (1,5). "egen" betyr at brukeren skriver eget tall.
+  // Default "middels" (1,5). "0" er "Ingen" (bare drivstoff), "egen" betyr
+  // at brukeren skriver eget tall.
   let slitasjeModus = '1.5';
 
   function gjeldendeSlitasje() {
@@ -86,6 +88,8 @@
     el.totalKr.textContent = kr.format(r.total);
     el.drivstoffKr.textContent = kr.format(r.drivstoff);
     el.slitasjeKr.textContent = kr.format(r.slitasje);
+    // Med "Ingen" valgt er slitasjeraden støy: totalen er ren drivstoff.
+    el.slitasjeRad.hidden = slitasjeModus === '0';
 
     // Per person vises bare når flere deler regningen
     if (r.antallPersoner > 1) {

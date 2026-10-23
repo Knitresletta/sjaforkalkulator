@@ -51,6 +51,15 @@ test('beregnKjorekostnad — realistisk eksempel', () => {
   assert.ok(Math.abs(r.total - 81.57) < 1e-9);
 });
 
+test('beregnKjorekostnad — ingen slitasje gir ren drivstoffkostnad', () => {
+  const r = beregnKjorekostnad({ literpris: 20, forbruk: 0.7, avstand: 100, slitasje: SLITASJE_VALG.ingen });
+  assert.equal(SLITASJE_VALG.ingen, 0);
+  assert.equal(r.slitasje, 0, 'ingen slitasje');
+  assert.equal(r.total, r.drivstoff, 'totalen er bare drivstoff');
+  assert.equal(r.total, 14);
+  assert.equal(r.krPerMil, 1.4, 'kr/mil regnes fortsatt');
+});
+
 test('beregnKjorekostnad — tur/retur dobler avstanden', () => {
   const enVei = beregnKjorekostnad({ literpris: 20, forbruk: 0.5, avstand: 30, slitasje: 1, turRetur: false });
   const turRetur = beregnKjorekostnad({ literpris: 20, forbruk: 0.5, avstand: 30, slitasje: 1, turRetur: true });

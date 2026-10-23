@@ -68,6 +68,7 @@
       <fieldset class="sk-felt sk-fieldset">
         <legend class="sk-label">Slitasje</legend>
         <div class="sk-segment" id="slitasjeValg" role="group" aria-label="Slitasjenivå">
+          <button type="button" class="sk-segment-knapp" data-verdi="0">Ingen<small>0 kr/mil</small></button>
           <button type="button" class="sk-segment-knapp" data-verdi="1.0">Lav<small>10 kr/mil</small></button>
           <button type="button" class="sk-segment-knapp sk-aktiv" data-verdi="1.5">Middels<small>15 kr/mil</small></button>
           <button type="button" class="sk-segment-knapp" data-verdi="2.0">Høy<small>20 kr/mil</small></button>
@@ -78,7 +79,7 @@
                  type="text" inputmode="decimal" placeholder="1,5">
           <span class="sk-enhet">kr/km</span>
         </div>
-        <p class="sk-hjelp">Dekk, service og vedlikehold — uten drivstoff. Statens sats (3,50 kr/km) dekker også drivstoff, så den passer ikke her.</p>
+        <p class="sk-hjelp">Dekk, service og vedlikehold, uten drivstoff. Velg «Ingen» for å se bare drivstoffkostnaden. Statens sats (3,50 kr/km) dekker også drivstoff, så den passer ikke her.</p>
       </fieldset>
 
       <!-- Antall personer -->
@@ -104,7 +105,7 @@
           <dt>Drivstoff</dt>
           <dd id="drivstoffKr">0,00 kr</dd>
         </div>
-        <div class="sk-rad">
+        <div class="sk-rad" id="slitasjeRad">
           <dt>Slitasje</dt>
           <dd id="slitasjeKr">0,00 kr</dd>
         </div>

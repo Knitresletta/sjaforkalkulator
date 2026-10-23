@@ -105,6 +105,7 @@ function beregnKjorekostnad(input = {}) {
 // Slitasje-forhåndsvalg (kr/km). Tall fra NAF/bransje: dekk + service +
 // vedlikehold uten drivstoff lander typisk på 1,0–2,0 kr/km.
 const SLITASJE_VALG = {
+  ingen: 0,     // bare drivstoff, f.eks. for å anslå egen bensinkostnad
   lav: 1.0,
   middels: 1.5,
   hoy: 2.0,

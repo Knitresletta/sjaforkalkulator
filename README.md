@@ -11,7 +11,7 @@ kjøre på GitHub Pages og senere pakkes inn i en iOS-app.
 
 - Literpris, forbruk (l/100 km) og avstand inn → kostnad ut, **live** mens du skriver
 - **Tur/retur**-bryter som dobler avstanden
-- **Slitasje** som forhåndsvalg (Lav 1,0 / Middels 1,5 / Høy 2,0 kr/km) eller eget tall
+- **Slitasje** som forhåndsvalg (Ingen 0 / Lav 1,0 / Middels 1,5 / Høy 2,0 kr/km) eller eget tall. «Ingen» gir ren drivstoffkostnad, nyttig for å anslå hva en tur koster deg selv i bensin
 - **Spleis**: del totalen på antall personer
 - Oppdeling i drivstoff vs. slitasje, pluss kr/mil
 - Norske kommatall (`21,90`) håndteres, og mobiltastaturet viser tall
