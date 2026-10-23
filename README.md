@@ -48,6 +48,11 @@ derfor ikke her, da ville bensinen telt dobbelt. Forhåndsvalgene (1,0-2,0
 kr/km) er "ren slitasje": dekk, service og vedlikehold, basert på
 NAF-/bransjeestimater.
 
+Valget **Ingen** (0 kr/km) slår slitasjen helt av, og totalen blir ren
+drivstoffkostnad. Det passer når du bare vil vite omtrent hva en tur koster
+deg selv i bensin, uten å ta med at bilen slites. Skal flere spleise på
+turen, bør slitasje være med, ellers tar sjåføren hele den regningen alene.
+
 Kilder: [NAF: kostnader](https://www.naf.no/bilhold/kostnader),
 [NAF: kjøregodtgjørelse](https://nye.naf.no/bilhold/kostnader/satser-for-kjoregodtgjorelse).
 
