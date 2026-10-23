@@ -4,7 +4,7 @@ Liten web-app som regner ut hva en kjøretur koster: **drivstoff** (literpris ×
 forbruk × avstand) pluss **slitasje** (dekk, service, vedlikehold), og deler
 gjerne summen på antall passasjerer.
 
-Mobil-først, ingen byggesteg, ingen avhengigheter. Ren HTML/CSS/JS — laget for å
+Mobil-først, ingen byggesteg, ingen avhengigheter. Ren HTML/CSS/JS, laget for å
 kjøre på GitHub Pages og senere pakkes inn i en iOS-app.
 
 ## Funksjoner
@@ -20,7 +20,7 @@ kjøre på GitHub Pages og senere pakkes inn i en iOS-app.
 
 ## Kjøre lokalt
 
-Det er en statisk side — åpne `index.html` rett i nettleseren, eller server den:
+Det er en statisk side: åpne `index.html` rett i nettleseren, eller server den:
 
 ```bash
 python3 -m http.server 8000
@@ -33,7 +33,7 @@ fungerer fint ved å åpne fila direkte.)
 ## Tester
 
 Regnelogikken i `calc.js` er dekket av tester som kjører på Nodes innebygde
-test-runner — ingen `npm install`:
+test-runner, ingen `npm install`:
 
 ```bash
 node --test
@@ -44,12 +44,12 @@ node --check app.js   # rask syntaks-sjekk av frontend-koden
 
 Kalkulatoren skiller bevisst slitasje fra drivstoff. Den kjente satsen på
 **3,50 kr/km** (statens kjøregodtgjørelse) *inkluderer* drivstoff og passer
-derfor ikke her — da ville bensinen telt dobbelt. Forhåndsvalgene (1,0–2,0
+derfor ikke her, da ville bensinen telt dobbelt. Forhåndsvalgene (1,0-2,0
 kr/km) er "ren slitasje": dekk, service og vedlikehold, basert på
 NAF-/bransjeestimater.
 
-Kilder: [NAF – kostnader](https://www.naf.no/bilhold/kostnader),
-[NAF – kjøregodtgjørelse](https://nye.naf.no/bilhold/kostnader/satser-for-kjoregodtgjorelse).
+Kilder: [NAF: kostnader](https://www.naf.no/bilhold/kostnader),
+[NAF: kjøregodtgjørelse](https://nye.naf.no/bilhold/kostnader/satser-for-kjoregodtgjorelse).
 
 ## Filer
 
@@ -57,7 +57,7 @@ Kilder: [NAF – kostnader](https://www.naf.no/bilhold/kostnader),
 |-----|--------|
 | `index.html` | Struktur og felter |
 | `style.css` | Mobil-først styling (`sk-`-prefiks) |
-| `calc.js` | Ren regnelogikk — testbar, uten DOM |
+| `calc.js` | Ren regnelogikk, testbar, uten DOM |
 | `app.js` | Kobler skjema til skjerm + localStorage |
 | `test/calc.test.js` | Tester for `calc.js` |
 | `manifest.webmanifest`, `icon.svg` | PWA / Hjem-skjerm |

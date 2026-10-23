@@ -1,5 +1,5 @@
 /*
- * app.js — kobler skjemaet til regnelogikken i calc.js.
+ * app.js: kobler skjemaet til regnelogikken i calc.js.
  *
  * Ansvar her: lese inputfelter, regne om ved hver endring, skrive
  * resultatet til skjermen, og huske verdiene i localStorage mellom
@@ -128,7 +128,7 @@
       };
       localStorage.setItem(LAGER_NOKKEL, JSON.stringify(data));
     } catch (e) {
-      // localStorage kan være blokkert (privat modus e.l.) — ignorer stille.
+      // localStorage kan være blokkert (privat modus e.l.), ignorer stille.
     }
   }
 

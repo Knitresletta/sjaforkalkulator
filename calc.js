@@ -1,5 +1,5 @@
 /*
- * calc.js — ren regnelogikk for Sjåførkalkulatoren.
+ * calc.js: ren regnelogikk for Sjåførkalkulatoren.
  *
  * Holdt fri for DOM med vilje: de samme funksjonene kjører både i
  * nettleseren (lastet via <script>) og i Node (for testene). All
@@ -14,7 +14,7 @@
  * ("1.50"), mellomrom som tusenskille ("1 234") og den norske
  * kombinasjonen punktum-tusen + komma-desimal ("1.234,50").
  *
- * Returnerer NaN for tomt/ugyldig — kalleren bestemmer hva det skal bety.
+ * Returnerer NaN for tomt/ugyldig, kalleren bestemmer hva det skal bety.
  */
 function parseTall(verdi) {
   if (typeof verdi === 'number') {
@@ -57,8 +57,8 @@ function trygtTall(verdi, fallback = 0) {
  *   literpris,        // kr per liter
  *   forbruk,          // liter per 100 km
  *   avstand,          // km, én vei
- *   slitasje,         // kr per km (dekk, service, vedlikehold — uten drivstoff)
- *   turRetur,         // bool — dobler avstanden
+ *   slitasje,         // kr per km (dekk, service, vedlikehold, uten drivstoff)
+ *   turRetur,         // bool, dobler avstanden
  *   antallPersoner,   // hvor mange deler regningen (minst 1)
  * }
  *
@@ -103,7 +103,7 @@ function beregnKjorekostnad(input = {}) {
 }
 
 // Slitasje-forhåndsvalg (kr/km). Tall fra NAF/bransje: dekk + service +
-// vedlikehold uten drivstoff lander typisk på 1,0–2,0 kr/km.
+// vedlikehold uten drivstoff lander typisk på 1,0-2,0 kr/km.
 const SLITASJE_VALG = {
   ingen: 0,     // bare drivstoff, f.eks. for å anslå egen bensinkostnad
   lav: 1.0,
